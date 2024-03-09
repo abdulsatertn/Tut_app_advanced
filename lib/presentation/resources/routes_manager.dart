@@ -3,6 +3,7 @@ import 'package:store_app_advanced/presentation/forget_password/forget_password_
 import 'package:store_app_advanced/presentation/login/login_view.dart';
 import 'package:store_app_advanced/presentation/main/main.dart';
 import 'package:store_app_advanced/presentation/register/register_view.dart';
+import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
 import 'package:store_app_advanced/presentation/splash/splash_view.dart';
 import 'package:store_app_advanced/presentation/store_details/store_details_view.dart';
 
@@ -41,9 +42,9 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: const Text('No Route Found'),
+                title: const Text(AppStrings.noRoutefound),
               ),
-              body: const Center(child: Text('No Rout Found')),
+              body: const Center(child: Text(AppStrings.noRoutefound)),
             ));
   }
 }
