@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app_advanced/presentation/theme_manager.dart';
+import 'package:store_app_advanced/presentation/resources/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key}); //default constructur
