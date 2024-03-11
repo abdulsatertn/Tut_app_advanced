@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
 import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
+import 'package:store_app_advanced/presentation/resources/values_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -60,6 +61,36 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             itemBuilder: (context, index) {
               //return onBoardingPage
             }));
+  }
+}
+
+class OnBoardingPage extends StatelessWidget {
+  final SliderObject _sliderObject;
+
+  const OnBoardingPage(this._sliderObject, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const SizedBox(height: AppSize.s4),
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p8),
+          child: Text(
+            _sliderObject.title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+        ),
+        Text(
+          _sliderObject.subTitle,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        const SizedBox(height: AppSize.s60),
+      ],
+    );
   }
 }
 
