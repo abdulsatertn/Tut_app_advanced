@@ -69,6 +69,7 @@ ThemeData getApplicationTheme() {
           color: ColorManager.white,
           fontSize: FontSize.s22), // displayMedium in the
     ),
+
 // input decoration theme (text form fieled)
 
     inputDecorationTheme: InputDecorationTheme(
