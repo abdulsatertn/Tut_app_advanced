@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
+import 'package:store_app_advanced/presentation/resources/constants_manager.dart';
+import 'package:store_app_advanced/presentation/resources/routes_manager.dart';
 import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
 import 'package:store_app_advanced/presentation/resources/values_manager.dart';
 
@@ -71,7 +74,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                },
                 child: const Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
@@ -93,6 +98,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
+            onTap: () {
+              // go to previous slide
+              _pageController.animateToPage(_getPreviousIndex(),
+                  duration: const Duration(
+                      milliseconds: AppConstants.sliderAnimation),
+                  curve: Curves.bounceInOut);
+            },
             child: SizedBox(
               width: AppSize.s20,
               height: AppSize.s20,
@@ -117,6 +129,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
+            onTap: () {
+              _pageController.animateToPage(_getNextIndex(),
+                  duration: const Duration(
+                      milliseconds: AppConstants.sliderAnimation),
+                  curve: Curves.bounceInOut);
+            },
             child: SizedBox(
               width: AppSize.s20,
               height: AppSize.s20,
@@ -128,7 +146,24 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  _getProperCircle(int index) {
+  int _getPreviousIndex() {
+    int previousIndex = _currentIndex--;
+    if (previousIndex == -1) {
+      previousIndex = _list.length - 1;
+    }
+    return previousIndex;
+  }
+
+  int _getNextIndex() {
+    int nextIndex = _currentIndex++;
+    if (nextIndex == _list.length) {
+      nextIndex = 0;
+    }
+    return nextIndex;
+  }
+
+// ignore: body_might_complete_normally_nullable
+  Widget? _getProperCircle(int index) {
     if (index == _currentIndex) {
       return SvgPicture.asset(ImageAssets.hollowCircleIc);
     } else {
