@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
