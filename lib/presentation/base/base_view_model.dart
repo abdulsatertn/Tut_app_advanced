@@ -9,4 +9,4 @@ abstract class BaseViewModelInputs {
   void dispose(); // will be called when view model dies
 }
 
-mixin class BaseViewModelOutputs {}
+abstract mixin class BaseViewModelOutputs {}

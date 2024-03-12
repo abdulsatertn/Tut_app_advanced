@@ -5,9 +5,10 @@ import 'package:store_app_advanced/presentation/base/base_view_model.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
 
-abstract class OnBoardingViewModel extends OnBoardingViewModelInputs
+class OnBoardingViewModel extends OnBoardingViewModelInputs
     with OnBoardingViewModelOutputs {
-  StreamController _streamController = StreamController<SliderViewObject>();
+  final StreamController _streamController =
+      StreamController<SliderViewObject>();
   late final List<SliderObject> _list;
   int _currentIndex = 0;
 
@@ -25,18 +26,27 @@ abstract class OnBoardingViewModel extends OnBoardingViewModelInputs
   }
 
   @override
-  void goNext() {
-    // TODO: implement goNext
+  int goNext() {
+    int nextIndex = ++_currentIndex;
+    if (nextIndex == _list.length) {
+      nextIndex = 0;
+    }
+    return nextIndex;
   }
 
   @override
-  void goPrevious() {
-    // TODO: implement goPrevious
+  int goPrevious() {
+    int previousIndex = --_currentIndex;
+    if (previousIndex == -1) {
+      previousIndex = _list.length - 1;
+    }
+    return previousIndex;
   }
 
   @override
   void onPageChanged(int index) {
-    // TODO: implement onPageChanged
+    _currentIndex = index;
+    _postDataToView();
   }
 
   // onboarding view model inputs
@@ -81,8 +91,8 @@ abstract class OnBoardingViewModel extends OnBoardingViewModelInputs
 
 // inputs mean that 'Orders' that our view model will recive from view
 abstract class OnBoardingViewModelInputs extends BaseViewModel {
-  void goNext(); //when user click the right arrow or  swipe left
-  void goPrevious(); // when use clicks on left arrow or swap right
+  int goNext(); //when user click the right arrow or  swipe left
+  int goPrevious(); // when use clicks on left arrow or swap right
 
   void onPageChanged(int index);
 
