@@ -152,6 +152,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "dartz",
+      "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/dartz-0.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "dio",
       "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.4.1",
       "packageUri": "lib/",
@@ -584,7 +590,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-03-15T13:47:45.038696Z",
+  "generated": "2024-03-15T21:16:58.538597Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
