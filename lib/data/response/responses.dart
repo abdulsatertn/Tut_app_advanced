@@ -42,7 +42,7 @@ class ContactsResponse {
   String? email;
 
   @JsonKey(name: 'link')
-  int? link;
+  String? link;
 
   ContactsResponse(this.phone, this.email, this.link);
 
