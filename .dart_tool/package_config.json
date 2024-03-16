@@ -248,6 +248,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "internet_connection_checker",
+      "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/internet_connection_checker-1.0.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "io",
       "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.4",
       "packageUri": "lib/",
@@ -590,7 +596,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-03-16T19:08:01.790445Z",
+  "generated": "2024-03-16T19:37:00.269691Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
