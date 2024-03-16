@@ -17,7 +17,7 @@ class RepositryImpl implements Repositry {
   Future<Either<Failure, Authentecation>> login(
       LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
-// it is connected to internet so itss safe to call API
+      // it is connected to internet so itss safe to call API
       final respons = await _remoteDataSource.login(loginRequest);
 
       if (respons.status == 0) {
@@ -31,7 +31,7 @@ class RepositryImpl implements Repositry {
         return Left(Failure(409, respons.message ?? 'buisness error'));
       }
     } else {
-// return internet connection failure
+      // return internet connection failure
       return Left(Failure(501, 'please check your internet connection'));
     }
   }
