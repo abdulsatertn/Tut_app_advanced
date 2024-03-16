@@ -32,3 +32,26 @@ class ResponseCode {
   static const int NO_INTERNET_CONNECTION = -6; //
   static const int UNKNOWN = -7; //
 }
+
+class ResponseMessage {
+  static const String SUCCESS = 'success'; // success with data
+  static const String NO_CONTENT =
+      'success'; // success with no data (no content)
+  static const String BAD_REQUEST =
+      'bad request , try again later'; // failure , API rejected request
+  static const String UNAUTHORISED =
+      'user is unauthorised, try again later'; // failure , user is not autherised
+  static const String FORBIDDEN = 'fornidden request'; // API rejected  request
+  static const String INTERNAL_SERVER_ERROR =
+      'something went wrong , try again later'; // failure , crash in server side
+
+  // local status code
+  static const String CONNECT_TIME_OUT = 'Time out  error , try again later'; //
+  static const String CANCEL = 'request was cancelled try again later'; //
+  static const String RECIEVE_TIME_OUT = 'Time out  error , try again later'; //
+  static const String SEND_TIME_OUT = 'Time out  error , try again later'; //
+  static const String CACHE_ERROR = 'Cache error , try again later'; //
+  static const String NO_INTERNET_CONNECTION =
+      'Please check your internet connection'; //
+  static const String UNKNOWN = 'something went wrong , try again later'; //
+}
