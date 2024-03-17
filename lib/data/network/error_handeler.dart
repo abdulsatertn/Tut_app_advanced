@@ -25,6 +25,8 @@ Failure _handleError(DioException error) {
       return DataSource.RECIEVE_TIME_OUT.getFailure();
     case DioExceptionType.badCertificate:
       return DataSource.UNAUTHORISED.getFailure();
+
+    // the most important one
     case DioExceptionType
           .badResponse: // the response frpm api and it hold code and message and i ve to show them from the response
       if (error.response != null &&
@@ -157,4 +159,9 @@ class ResponseMessage {
   static const String NO_INTERNET_CONNECTION =
       'Please check your internet connection';
   static const String DEFAULT = 'something went wrong , try again later';
+}
+
+class ApiInternalStatus {
+  static const int SUCCESS = 0;
+  static const int FAILURE = 1;
 }
