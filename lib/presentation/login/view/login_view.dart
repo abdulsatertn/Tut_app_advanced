@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app_advanced/presentation/login/view_model/login_view_model.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
+import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
 import 'package:store_app_advanced/presentation/resources/values_manager.dart';
 
 class LoginView extends StatefulWidget {
@@ -66,6 +67,32 @@ class _LoginViewState extends State<LoginView> {
                       return TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _userNameController,
+                        decoration: InputDecoration(
+                            hintText: AppStrings.username,
+                            labelText: AppStrings.username,
+                            errorText: (snapshot.data ?? true)
+                                ? null
+                                : AppStrings.userNameError),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: AppSize.s28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: AppPadding.p28, right: AppPadding.p28),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outIsPasswordValid,
+                    builder: (context, snapshot) {
+                      return TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: _userPasswordController,
+                        decoration: InputDecoration(
+                            hintText: AppStrings.password,
+                            labelText: AppStrings.password,
+                            errorText: (snapshot.data ?? true)
+                                ? null
+                                : AppStrings.passwordError),
                       );
                     },
                   ),
