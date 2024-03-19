@@ -12,7 +12,7 @@ class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
   final NetworkInfo _networkInfo;
 
-  RepositoryImpl.repositoryImpl(this._remoteDataSource, this._networkInfo);
+  RepositoryImpl(this._remoteDataSource, this._networkInfo);
 
   @override
   Future<Either<Failure, Authentecation>> login(
