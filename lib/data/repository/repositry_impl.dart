@@ -8,11 +8,11 @@ import 'package:store_app_advanced/data/network/requests.dart';
 import 'package:store_app_advanced/domain/models/models.dart';
 import 'package:store_app_advanced/domain/reposetry/reposetry.dart';
 
-class RepositryImpl implements Repository {
+class RepositoryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
   final NetworkInfo _networkInfo;
 
-  RepositryImpl(this._remoteDataSource, this._networkInfo);
+  RepositoryImpl.repositoryImpl(this._remoteDataSource, this._networkInfo);
 
   @override
   Future<Either<Failure, Authentecation>> login(

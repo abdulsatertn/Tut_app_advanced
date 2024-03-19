@@ -236,6 +236,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "get_it",
+      "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/get_it-7.6.7",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///C:/Users/Techno-Gate/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
@@ -710,7 +716,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-03-19T12:17:38.764277Z",
+  "generated": "2024-03-19T19:40:12.259914Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
