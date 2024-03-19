@@ -8,7 +8,7 @@ import 'package:store_app_advanced/data/network/requests.dart';
 import 'package:store_app_advanced/domain/models/models.dart';
 import 'package:store_app_advanced/domain/reposetry/reposetry.dart';
 
-class RepositryImpl implements Repositry {
+class RepositryImpl implements Repository {
   final RemoteDataSource _remoteDataSource;
   final NetworkInfo _networkInfo;
 
