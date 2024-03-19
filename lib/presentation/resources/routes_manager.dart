@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app_advanced/presentation/forget_password/forget_password_view.dart';
-import 'package:store_app_advanced/presentation/login/login_view.dart';
+import 'package:store_app_advanced/presentation/login/view/login_view.dart';
 import 'package:store_app_advanced/presentation/main/main.dart';
 import 'package:store_app_advanced/presentation/on_boarding/view/onboarding_view.dart';
 import 'package:store_app_advanced/presentation/register/register_view.dart';
