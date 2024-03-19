@@ -1,6 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:store_app_advanced/app/app_prefs.dart';
+import 'package:store_app_advanced/data/data_source/remote_data_source.dart';
+import 'package:store_app_advanced/data/network/app_api.dart';
+import 'package:store_app_advanced/data/network/dio_factory.dart';
+import 'package:store_app_advanced/data/network/network_info.dart';
+import 'package:store_app_advanced/data/repository/repositry_impl.dart';
+import 'package:store_app_advanced/domain/reposetry/reposetry.dart';
 
 final instance = GetIt.instance;
 
@@ -16,6 +24,27 @@ Future<void> initAppModule() async {
 
   instance.registerLazySingleton<AppPreferences>(
       () => AppPreferences(instance<SharedPreferences>()));
+
+  // Network info instance
+
+  instance.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(InternetConnectionChecker()));
+
+  // dio factory instance
+  instance.registerLazySingleton<DioFactory>(
+      () => DioFactory(instance<AppPreferences>()));
+
+  // app service client instance
+  Dio dio = await instance<DioFactory>().getDio();
+  instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+
+  // remote data source instance
+  instance.registerLazySingleton<RemoteDataSource>(
+      () => RemoteDataSourceImpl(instance<AppServiceClient>()));
+
+  // repository instance
+  instance.registerLazySingleton<Repository>(
+      () => RepositoryImpl.repositoryImpl(instance(), instance()));
 }
 
 Future<void> initLoginModule() async {}
