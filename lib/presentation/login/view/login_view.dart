@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app_advanced/app/di.dart';
 import 'package:store_app_advanced/data/data_source/remote_data_source.dart';
 import 'package:store_app_advanced/data/repository/repositry_impl.dart';
 import 'package:store_app_advanced/domain/reposetry/reposetry.dart';
@@ -18,7 +19,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(_loginUseCase);
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _userPasswordController = TextEditingController();
