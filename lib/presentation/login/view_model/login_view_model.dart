@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:store_app_advanced/domain/use_case/login_use_case.dart';
 import 'package:store_app_advanced/presentation/base/base_view_model.dart';
 import 'package:store_app_advanced/presentation/common/freezed_data_class.dart';
 
@@ -10,6 +11,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
       StreamController<String>.broadcast();
 
   var loginObject = LoginObject('', '');
+
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
 
   // inputs
   @override
@@ -42,9 +46,16 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
   }
 
   @override
-  login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  login() async {
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+            (failure) => {
+                  // left => failure
+                },
+            (data) => {
+                  // right => data
+                });
   }
 
   // Outputs
