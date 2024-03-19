@@ -15,8 +15,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
 
   var loginObject = LoginObject('', '');
 
-  final LoginUseCase _loginUseCase;
-  LoginViewModel(this._loginUseCase);
+  // final LoginUseCase _loginUseCase;
+  // LoginViewModel(this._loginUseCase);
+  LoginViewModel();
 
   // inputs
   @override
@@ -56,15 +57,15 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
 
   @override
   login() async {
-    (await _loginUseCase.execute(
-            LoginUseCaseInput(loginObject.userName, loginObject.password)))
-        .fold(
-            (failure) => {
-                  // left => failure
-                },
-            (data) => {
-                  // right => data
-                });
+    // (await _loginUseCase.execute(
+    //         LoginUseCaseInput(loginObject.userName, loginObject.password)))
+    //     .fold(
+    //         (failure) => {
+    //               // left => failure
+    //             },
+    //         (data) => {
+    //               // right => data
+    //             });
   }
 
   // Outputs
