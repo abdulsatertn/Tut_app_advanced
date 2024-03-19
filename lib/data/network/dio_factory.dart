@@ -13,14 +13,11 @@ class DioFactory {
   Future<Dio> getDio() async {
     Dio dio = Dio();
 
-    Duration _timeOut =
-        const Duration(milliseconds: 60 * 1000); //one  minute time out
-
 //adding headers
     Map<String, String> headers = {
       CONTENT_TYPE: APPLICATION_JSON,
       ACCEPT: APPLICATION_JSON,
-      AUTHORIZATION: 'send token here',
+      AUTHORIZATION: Constants.token,
       DEFAULT_LANGUAGE: 'en', // TODO get lang from app prefs
     };
 // so important to use the logger with dio
@@ -37,8 +34,8 @@ class DioFactory {
     dio.options = BaseOptions(
       baseUrl: Constants.baseUrl,
       headers: headers,
-      receiveTimeout: _timeOut,
-      sendTimeout: _timeOut,
+      receiveTimeout: Constants.apiTimeOut,
+      sendTimeout: Constants.apiTimeOut,
     );
     return dio;
   }
