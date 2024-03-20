@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app_advanced/app/di.dart';
-import 'package:store_app_advanced/data/data_source/remote_data_source.dart';
-import 'package:store_app_advanced/data/repository/repositry_impl.dart';
-import 'package:store_app_advanced/domain/reposetry/reposetry.dart';
-import 'package:store_app_advanced/domain/use_case/login_use_case.dart';
 import 'package:store_app_advanced/presentation/login/view_model/login_view_model.dart';
 import 'package:store_app_advanced/presentation/resources/assets_manager.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
