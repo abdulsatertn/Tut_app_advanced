@@ -33,7 +33,8 @@
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="store_app_advanced" >
+        android:label="store_app_advanced"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.example.store_app_advanced.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

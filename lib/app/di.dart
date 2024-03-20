@@ -33,8 +33,7 @@ Future<void> initAppModule() async {
       () => NetworkInfoImpl(InternetConnectionChecker()));
 
   // dio factory instance
-  instance.registerLazySingleton<DioFactory>(
-      () => DioFactory(instance<AppPreferences>()));
+  instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));
 
   // app service client instance
   Dio dio = await instance<DioFactory>().getDio();
@@ -50,7 +49,7 @@ Future<void> initAppModule() async {
 }
 
 void initLoginModule() async {
-  if (GetIt.I.isRegistered<LoginUseCase>()) {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
