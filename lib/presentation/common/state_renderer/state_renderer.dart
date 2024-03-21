@@ -55,11 +55,18 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        return _getPupUpDialog(context);
+        return _getPupUpDialog(context, [_getAnimatedImage()]);
       case StateRendererType.popupErrorState:
-      // TODO: Handle this case.
+        return _getPupUpDialog(context, [
+          _getAnimatedImage(),
+          _getMessage(message),
+          _getRetryButton(AppStrings.ok, context)
+        ]);
       case StateRendererType.fullScreenLoadingState:
-      // TODO: Handle this case.
+        return _getItemsColumn([
+          _getAnimatedImage(),
+          _getMessage(message),
+        ]);
       case StateRendererType.fullScreenErrorState:
         return _getItemsColumn([
           _getAnimatedImage(),
@@ -68,16 +75,16 @@ class StateRenderer extends StatelessWidget {
         ]);
 
       case StateRendererType.fullScreenEmptyState:
-        return _getItemsColumn([
-          _getAnimatedImage(),
-          _getMessage(message),
-        ]);
+        return _getItemsColumn([_getAnimatedImage(), _getMessage(message)]);
       case StateRendererType.contentState:
-      // TODO: Handle this case.
+        return Container();
+
+      default:
+        return Container();
     }
   }
 
-  Widget _getPupUpDialog(BuildContext context) {
+  Widget _getPupUpDialog(BuildContext context, List<Widget> children) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
@@ -95,12 +102,19 @@ class StateRenderer extends StatelessWidget {
           ),
           boxShadow: const [BoxShadow(color: Colors.black26)],
         ),
-        child: _getDialogContent(context),
+        child: _getDialogContent(context, children),
       ),
     );
   }
 
-  Widget _getDialogContent(BuildContext context) {}
+  Widget _getDialogContent(BuildContext context, List<Widget> children) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: children,
+    );
+  }
 
   Widget _getItemsColumn(List<Widget> children) {
     return Column(
