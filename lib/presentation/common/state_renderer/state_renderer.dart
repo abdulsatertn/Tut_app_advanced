@@ -1,5 +1,6 @@
 import 'dart:js';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -54,7 +55,7 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-      // TODO: Handle this case.
+        return _getPupUpDialog(context);
       case StateRendererType.popupErrorState:
       // TODO: Handle this case.
       case StateRendererType.fullScreenLoadingState:
@@ -75,6 +76,31 @@ class StateRenderer extends StatelessWidget {
       // TODO: Handle this case.
     }
   }
+
+  Widget _getPupUpDialog(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          AppSize.s14,
+        ),
+      ),
+      elevation: AppSize.s1_5,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(
+            AppSize.s14,
+          ),
+          boxShadow: const [BoxShadow(color: Colors.black26)],
+        ),
+        child: _getDialogContent(context),
+      ),
+    );
+  }
+
+  Widget _getDialogContent(BuildContext context) {}
 
   Widget _getItemsColumn(List<Widget> children) {
     return Column(
@@ -110,19 +136,20 @@ class StateRenderer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.p18),
         child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () {
-                  if (stateRendererType ==
-                      StateRendererType.fullScreenErrorState) {
-                    // call retry function
-                    retryActionFunction.call();
-                  } else {
-                    // popup error state
-                    Navigator.of(context).pop();
-                  }
-                },
-                child: Text(buttonTitle))),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              if (stateRendererType == StateRendererType.fullScreenErrorState) {
+                // call retry function
+                retryActionFunction.call();
+              } else {
+                // popup error state
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text(buttonTitle),
+          ),
+        ),
       ),
     );
   }
