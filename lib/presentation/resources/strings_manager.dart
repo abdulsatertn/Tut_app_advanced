@@ -24,4 +24,6 @@ class AppStrings {
   static const String registerText = 'Not a member? Sign up';
   static const String userNameError = 'Please Enter Your User Name';
   static const String passwordError = 'Please Enter Your Password';
+
+  static const String loading = 'Loading ...';
 }
