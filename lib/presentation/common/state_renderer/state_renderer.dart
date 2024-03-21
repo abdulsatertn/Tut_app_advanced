@@ -1,7 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:store_app_advanced/data/network/Failure.dart';
+import 'package:store_app_advanced/presentation/resources/color_manger.dart';
+import 'package:store_app_advanced/presentation/resources/font_manager.dart';
 import 'package:store_app_advanced/presentation/resources/strings_manager.dart';
+import 'package:store_app_advanced/presentation/resources/style_manager.dart';
+import 'package:store_app_advanced/presentation/resources/values_manager.dart';
 
 enum StateRendererType {
   //popup state (Dialog)
@@ -53,9 +57,17 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.fullScreenLoadingState:
       // TODO: Handle this case.
       case StateRendererType.fullScreenErrorState:
-      // TODO: Handle this case.
+        return _getItemsColumn([
+          _getAnimatedImage(),
+          _getMessage(message),
+          _getRetryButton(AppStrings.retryAgain)
+        ]);
+
       case StateRendererType.fullScreenEmptyState:
-      // TODO: Handle this case.
+        return _getItemsColumn([
+          _getAnimatedImage(),
+          _getMessage(message),
+        ]);
       case StateRendererType.contentState:
       // TODO: Handle this case.
     }
@@ -67,5 +79,24 @@ class StateRenderer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: children,
     );
+  }
+
+  Widget _getAnimatedImage() {
+    return SizedBox(
+      height: AppSize.s100,
+      width: AppSize.s100,
+      child: Container(), // TODO: add json image here
+    );
+  }
+
+  Widget _getMessage(String message) {
+    return Text(
+      message,
+      style: getRegularStyle(color: ColorManager.black, fontSize: FontSize.s18),
+    );
+  }
+
+  Widget _getRetryButton(String buttonTitle) {
+    return ElevatedButton(onPressed: () {}, child: Text(buttonTitle));
   }
 }
