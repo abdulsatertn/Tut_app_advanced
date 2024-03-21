@@ -1,5 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:store_app_advanced/data/network/Failure.dart';
 import 'package:store_app_advanced/presentation/resources/color_manger.dart';
 import 'package:store_app_advanced/presentation/resources/font_manager.dart';
@@ -45,10 +48,10 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return _getStateWidget(context);
   }
 
-  Widget _getStateWidget() {
+  Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
       // TODO: Handle this case.
@@ -60,7 +63,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsColumn([
           _getAnimatedImage(),
           _getMessage(message),
-          _getRetryButton(AppStrings.retryAgain)
+          _getRetryButton(AppStrings.retryAgain, context)
         ]);
 
       case StateRendererType.fullScreenEmptyState:
@@ -90,13 +93,37 @@ class StateRenderer extends StatelessWidget {
   }
 
   Widget _getMessage(String message) {
-    return Text(
-      message,
-      style: getRegularStyle(color: ColorManager.black, fontSize: FontSize.s18),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p8),
+        child: Text(
+          message,
+          style: getRegularStyle(
+              color: ColorManager.black, fontSize: FontSize.s18),
+        ),
+      ),
     );
   }
 
-  Widget _getRetryButton(String buttonTitle) {
-    return ElevatedButton(onPressed: () {}, child: Text(buttonTitle));
+  Widget _getRetryButton(String buttonTitle, BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p18),
+        child: SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+                onPressed: () {
+                  if (stateRendererType ==
+                      StateRendererType.fullScreenErrorState) {
+                    // call retry function
+                    retryActionFunction.call();
+                  } else {
+                    // popup error state
+                    Navigator.of(context).pop();
+                  }
+                },
+                child: Text(buttonTitle))),
+      ),
+    );
   }
 }
