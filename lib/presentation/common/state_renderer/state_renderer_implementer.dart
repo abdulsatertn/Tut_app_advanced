@@ -89,6 +89,8 @@ extension FlowStateExtension on FlowState {
 
       case ErrorState:
         {
+          dismissDialog(context);
+
           if (getStateRendererType() == StateRendererType.popupErrorState) {
             // show popup error
             showPopUp(context, getStateRendererType(), getMessage());
@@ -116,13 +118,27 @@ extension FlowStateExtension on FlowState {
 
       case ContentState:
         {
+          dismissDialog(context);
+
           return contentScreenWidget;
         }
 
       default:
         {
+          dismissDialog(context);
           return contentScreenWidget;
         }
+    }
+  }
+
+  _isCurrentDialogShowing(BuildContext context) =>
+      ModalRoute.of(context)?.isCurrent !=
+      true; // to check if there is a dialog running before showing a new popup above it
+
+  // dismiss dialog before showing a new one above it
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
+      Navigator.of(context, rootNavigator: true).pop(true);
     }
   }
 
