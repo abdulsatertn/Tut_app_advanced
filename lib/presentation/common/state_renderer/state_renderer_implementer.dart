@@ -89,22 +89,39 @@ extension FlowStateExtension on FlowState {
 
       case ErrorState:
         {
-          break;
+          if (getStateRendererType() == StateRendererType.popupErrorState) {
+            // show popup error
+            showPopUp(context, getStateRendererType(), getMessage());
+
+            // show content of the screen
+            return contentScreenWidget;
+          } else {
+            // full screen loading state
+            return StateRenderer(
+              message: getMessage(),
+              stateRendererType: getStateRendererType(),
+              retryActionFunction: retryActionFunction,
+            );
+          }
         }
 
       case EmptyState:
         {
-          break;
+          return StateRenderer(
+            retryActionFunction: () {},
+            stateRendererType: getStateRendererType(),
+            message: getMessage(),
+          );
         }
 
       case ContentState:
         {
-          break;
+          return contentScreenWidget;
         }
 
       default:
         {
-          break;
+          return contentScreenWidget;
         }
     }
   }
