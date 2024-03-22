@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:store_app_advanced/domain/use_case/login_use_case.dart';
 import 'package:store_app_advanced/presentation/base/base_view_model.dart';
 import 'package:store_app_advanced/presentation/common/freezed_data_class.dart';
+import 'package:store_app_advanced/presentation/common/state_renderer/state_renderer_implementer.dart';
 
 class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
   final StreamController _userNameStreamController =
@@ -21,6 +22,8 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
   // inputs
   @override
   void dispose() {
+    super.dispose();
+
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
@@ -28,7 +31,9 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs {
 
   @override
   void start() {
-    // TODO: implement start
+    // view model should tell you please show content state
+
+    inputState.add(ContentState());
   }
 
   @override
